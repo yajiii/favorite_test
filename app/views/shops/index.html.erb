@@ -1,3 +1,17 @@
 <% @shops.each do |shop| %>
-  <h2><%= link_to shop.name, shop %></h2>
+  <h2>
+    <dev>
+      <%= link_to shop.name, shop %>
+      <% unless user_signed_in? %>
+        <span class="tooltip">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <span class="description_top">ログインするとお気に入りに追加できます</span>
+        </span>
+      <% else %>
+        <span id="shop-favorite-<%= shop.id %>">
+          <%= render 'favorites/shop_favorite_button', {  shop: shop } %>
+        </span>
+      <% end %>
+    <dev>
+  </h2>
 <% end %>

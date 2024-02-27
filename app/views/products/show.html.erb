@@ -1,1 +1,16 @@
-<h1><%= @product.name %></h1>
+<% unless user_signed_in? %>
+  <h1><%= @product.name %>
+  <span class="tooltip">
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <span class="description_top">ログインするとお気に入りに追加できます</span>
+  </span></h1>
+<% else %>
+  <h1>
+    <p>
+      <%= @product.name %>
+      <dev id="product-favorite-<%= @product.id %>">
+        <%= render 'favorites/product_favorite_button', {  shop: nil, product: @product } %>
+      </dev>
+    </p>
+  </h1>
+<% end %>

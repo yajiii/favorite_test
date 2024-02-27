@@ -1,4 +1,35 @@
-<h1><%= @shop.name%></h1>
+<h1>
+  <p>
+    <%= @shop.name %>
+    <dev id="shop-favorite-%= @shop.id %>">
+      <% if user_signed_in? %>
+        <span id="shop-favorite-<%= @shop.id %>">
+          <%= render 'favorites/shop_favorite_button', {  shop: @shop } %>
+        </span>
+      <% else %>
+        <span class="tooltip">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <span class="description_top">ログインするとお気に入りに追加できます</span>
+        </span>
+      <% end %>
+    </dev>
+  </p>
+</h1>
+
 <% @shop.products.each do |product| %>
-  <h2><%= link_to product.name, product %></h2>
+  <h2>
+    <dev>
+      <%= link_to product.name, product %>
+      <% unless user_signed_in? %>
+        <span class="tooltip">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <span class="description_top">ログインするとお気に入りに追加できます</span>
+        </span>
+      <% else %>
+        <span id="product-favorite-<%= product.id %>">
+          <%= render 'favorites/product_favorite_button', {  product: product } %>
+        </span>
+      <% end %>
+    <dev>
+  </h2>
 <% end %>
