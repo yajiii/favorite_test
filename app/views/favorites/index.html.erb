@@ -1,0 +1,41 @@
+<% if @shops.present? %>
+  <h1>お気に入り店舗</h1>
+  <% @shops.each do |shop| %>
+    <h2>
+      <dev>
+        <%= shop.name %>
+        <% unless user_signed_in? %>
+          <span class="tooltip">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <span class="description_top">ログインするとお気に入りに追加できます</span>
+          </span>
+        <% else %>
+          <span id="shop-favorite-<%= shop.id %>">
+            <%= render 'favorites/shop_favorite_button', {  shop: shop } %>
+          </span>
+        <% end %>
+      <dev>
+    </h2>
+  <% end %>
+<% end %>
+<% if @products.present? %>
+  <h1>お気に入り商品</h1>
+  <% @products.each do |product| %>
+    <h2>
+      <dev>
+        <%= link_to product.name, product %>
+        <% unless user_signed_in? %>
+          <span class="tooltip">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <span class="description_top">ログインするとお気に入りに追加できます</span>
+          </span>
+        <% else %>
+          <span id="product-favorite-<%= product.id %>">
+            <%= render 'favorites/product_favorite_button', {  product: product } %>
+          </span>
+        <% end %>
+      <dev>
+    </h2>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,5 @@
+<% if @product.present? %>
+  $("#product-favorite-<%= @product.id %>").html("<%= j(render partial: 'product_favorite_button', locals: { product: @product }) %>");
+<% else %>
+  $("#shop-favorite-<%= @shop.id %>").html("<%= j(render partial: 'shop_favorite_button', locals: { shop: @shop }) %>");
+<% end %>

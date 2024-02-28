@@ -1,0 +1,9 @@
+<% if product.favorited_by?(current_user) %>
+  <%= link_to product_favorites_path(product.id), method: :delete, remote: true, class:"product-favorite-btn", data: {"turbolinks" => false} do %>
+    <i class="fa fa-star" aria-hidden="true"></i>
+  <%  end %>
+<% else %>
+  <%= link_to "/products/#{product.id}/favorites", method: :post, remote: true, class:"product-favorite-btn", data: {"turbolinks" => false} do %>
+    <i class="fa fa-star-o" aria-hidden="true"></i>
+  <% end %>
+<% end %>
